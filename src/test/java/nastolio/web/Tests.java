@@ -38,7 +38,7 @@ public class Tests extends TestBase {
         mainPage.openPage();
 
         step("Search game", () ->
-                mainPage.doSearch("Tarraforming Mars"));
+                mainPage.doSearch("Terraforming Mars"));
 
         SearchPage searchPage = new SearchPage();
 
@@ -52,5 +52,9 @@ public class Tests extends TestBase {
             assertTrue(gamePage.englishNameDisplayed());
             assertTrue(gamePage.gameImageDisplayed());
         });
+    }
+
+    @Test
+    void name() {
     }
 }
