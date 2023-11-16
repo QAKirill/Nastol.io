@@ -1,7 +1,7 @@
 package nastolio.web;
 
+import nastolio.web.methods.StepsApi;
 import nastolio.web.pages.GamePage;
-import nastolio.web.pages.LoginPage;
 import nastolio.web.pages.MainPage;
 import nastolio.web.pages.SearchPage;
 import org.junit.jupiter.api.DisplayName;
@@ -15,18 +15,9 @@ public class Tests extends TestBase {
     MainPage mainPage = new MainPage();
 
     @Test
-    @DisplayName("Successful login")
+    @DisplayName("Successful Login")
     void successfulLoginTest() {
-        LoginPage loginPage = new LoginPage();
-
-        mainPage.openPage();
-
-        step("Do login", () -> {
-            mainPage.login();
-            loginPage.setEmail("ghostman92@rambler.ru")
-                    .setPassword("12345678")
-                    .doLogin();
-        });
+        mainPage.openPage().login();
 
         step("Check that profile avatar is displayed", () ->
                 assertTrue(mainPage.isProfileAvatarDisplayed()));
@@ -55,6 +46,24 @@ public class Tests extends TestBase {
     }
 
     @Test
-    void name() {
+    void nameApi(){
+        StepsApi authResponse = new StepsApi();
+        authResponse.login();
+    }
+
+    @Test
+    @DisplayName("Successfully adding a game to user collection")
+    void successfulAddGameToCollection() {
+        mainPage.openPage().login();
+
+        step("Add game to collection", () ->
+                mainPage.openGamesCollection()
+                        .addGameButtonClick()
+                        .searchGame("Покорение марса ")
+                        .addGame());
+
+        step("Check that the game is added to collection", () -> {
+                assertTrue(mainPage.gameInCollection());
+        });
     }
 }

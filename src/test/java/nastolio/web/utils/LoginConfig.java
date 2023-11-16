@@ -2,18 +2,18 @@ package nastolio.web.utils;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:login.properties"})
+@Config.Sources({"classpath:openLogin.properties"})
 
 public interface LoginConfig extends Config{
     @Config.Key("login")
-    @Config.DefaultValue("Petrov1415")
+    @Config.DefaultValue("ghostman92%40rambler.ru")
     String login();
 
     @Config.Key("password")
-    @Config.DefaultValue("Petrov1415!")
+    @Config.DefaultValue("12345678")
     String password();
 
     @Config.Key("loginPage")
-    @Config.DefaultValue("/Account/v1/Login")
+    @Config.DefaultValue("/Login")
     String loginPage();
 }
