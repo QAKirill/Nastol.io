@@ -56,7 +56,7 @@ public class Tests extends TestBase {
     }
 
     @Test
-    @DisplayName("Successfully adding a game to user collection")
+    @DisplayName("Successfully adding the game to user collection")
     void successfulAddGameToCollection() {
         mainPage.openPage().login();
 
