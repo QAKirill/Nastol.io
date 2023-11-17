@@ -18,9 +18,6 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        RestAssured.baseURI = "https://nastol.io";
-        RestAssured.defaultParser = Parser.JSON;
-
         Configuration.baseUrl = "https://nastol.io";
         Configuration.pageLoadStrategy = "eager";
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");

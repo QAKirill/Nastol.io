@@ -1,14 +1,12 @@
 package nastolio.web;
 
-import nastolio.web.methods.StepsApi;
-import nastolio.web.pages.GamePage;
-import nastolio.web.pages.MainPage;
-import nastolio.web.pages.SearchPage;
+import com.codeborne.selenide.Selenide;
+import nastolio.web.pages.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Tests extends TestBase {
 
@@ -46,28 +44,108 @@ public class Tests extends TestBase {
     }
 
     @Test
-    void nameApi(){
-        StepsApi authResponse = new StepsApi();
-        authResponse.login();
+    @DisplayName("Successfully adding the game to user collection")
+    void successfulAddGameToCollection() {
+        mainPage.openPage()
+                .login()
+                .openGamesCollection();
 
-        mainPage.openPage();
-        step("Check that profile avatar is displayed", () ->
-                assertTrue(mainPage.isProfileAvatarDisplayed()));
+        CollectionPage collectionPage = new CollectionPage();
+
+        step("Add game to collection", () -> {
+            collectionPage.addGameButtonClick()
+                    .searchGame("Покорение марса ")
+                    .addGame();
+        });
+
+        step("Check that the game is added to collection", () -> {
+            assertTrue(collectionPage.gameInCollection());
+        });
     }
 
     @Test
-    @DisplayName("Successfully adding a game to user collection")
-    void successfulAddGameToCollection() {
-        mainPage.openPage().login();
+    @DisplayName("Check elements on Premium page")
+    void premiumPageTest() {
+        mainPage.openPage()
+                .premiumClick();
 
-        step("Add game to collection", () ->
-                mainPage.openGamesCollection()
-                        .addGameButtonClick()
-                        .searchGame("Покорение марса ")
-                        .addGame());
+        PremiumPage premiumPage = new PremiumPage();
 
-        step("Check that the game is added to collection", () -> {
-                assertTrue(mainPage.gameInCollection());
+        step("Check elements on page", () -> {
+            assertTrue(premiumPage.checkHeader());
+            assertTrue(premiumPage.checkSubscribeButton());
+        });
+    }
+
+    @Test
+    @DisplayName("Successfully deleting game from collection")
+    void successfulDeleteGameFromCollection() {
+        mainPage.openPage()
+                .login()
+                .openGamesCollection();
+
+        CollectionPage collectionPage = new CollectionPage();
+
+        step("Add game to collection", () -> {
+            collectionPage.addGameButtonClick()
+                    .searchGame("Покорение марса ")
+                    .addGame();
+        });
+
+        step("Delete game from collection", () -> {
+            collectionPage.openGameCardFromCollection();
+
+            GamePage gamePage = new GamePage();
+            gamePage.removeGame();
+
+            mainPage.openGamesCollection();
+                });
+
+        step("Check that the game is deleted from collection", () -> {
+            assertFalse(collectionPage.gameInCollection());
+        });
+    }
+
+    @Test
+    @DisplayName("Successful find offers on market")
+    void findGameOffersOnMarket() {
+        mainPage.openPage()
+                .openMarketOffers();
+
+        MarketOffersPage offers = new MarketOffersPage();
+
+        step("Find game offers", () -> {
+            offers.setName("Манчкин")
+                    .setCity("Москва")
+                    .submit();
+        });
+
+        step("Check result", () -> {
+            assertFalse(offers.hasOffers());
+        });
+    }
+
+    @Test
+    void name() {
+        String comment = "Вы абсолютно правы!";
+        mainPage.openPage()
+                .login()
+                .openDiscussions();
+
+        DiscussionsPage discussionsPage = new DiscussionsPage();
+
+        step("Left comment", () ->
+        discussionsPage
+                .openFirst()
+                .leftComment(comment));
+
+        step("Check result", () -> {
+            assertTrue(discussionsPage.findMyComment(comment));
+        });
+
+        step("Clean up after yourself", () -> {
+            Selenide.refresh();
+            discussionsPage.deleteComment();
         });
     }
 }

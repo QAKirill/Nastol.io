@@ -1,8 +1,10 @@
 package nastolio.web.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
@@ -12,14 +14,13 @@ public class MainPage {
     private SelenideElement loginButton = $(byText("Вход")),
             profileAvatar = $(".header-profile__avatar"),
             searchInput = $("#app").$("form[method=get").$("input[name=query]"),
-            games = $(".menu").$("a[href=https\\:\\/\\/nastol\\.io\\/\\@testHedgehog\\/games"),
-            addGameButton = $(".content-container").$(".users-add-game").$("[type=button]"),
-            gameSearch = $(".modal-content").$("#game"),
-            addButton = $(".modal-content").$("button[title=Добавить]"),
-            gameInCollection = $("a[href=\\/terraforming_mars]");
+            games = $(".menu").$("a[href=https\\:\\/\\/nastol\\.io\\/\\@testHedgehog\\/games]"),
+            menuPremium = $(".menu-premium"),
+            buyGames = $(".menu").$(byText("Купить игру")),
+            discussions = $(".menu").$(byText("Обсуждения"));
 
 
-    @Step
+    @Step("Open main page")
     public MainPage openPage(){
         open("/");
         return this;
@@ -48,37 +49,28 @@ public class MainPage {
         return this;
     }
 
+    @Step("Open collection page")
     public MainPage openGamesCollection(){
         games.click();
         return this;
     }
 
-    public MainPage addGameButtonClick(){
-        addGameButton.click();
+    @Step("Open premium page")
+    public MainPage premiumClick(){
+        menuPremium.click();
         return this;
     }
 
-    public MainPage searchGame(String value){
-        gameSearch.sendKeys(value);
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        gameSearch.pressEnter();
-
+    @Step("Open market offers page")
+    public MainPage openMarketOffers(){
+        buyGames.click();
         return this;
     }
 
-    public MainPage addGame(){
-        addButton.click();
+    @Step("Open discussions page")
+    public MainPage openDiscussions(){
+        discussions.click();
         return this;
-    }
-
-    public boolean gameInCollection(){
-        return gameInCollection.exists();
     }
 
     public boolean isProfileAvatarDisplayed(){
