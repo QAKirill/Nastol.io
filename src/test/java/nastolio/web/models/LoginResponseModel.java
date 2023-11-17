@@ -1,11 +1,12 @@
 package nastolio.web.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginResponseModel {
-    String token, userId, expires, headerValue,
-            header = "Authorization";
+    @JsonProperty("Set-Cookie")
+    String token;
 }

@@ -49,6 +49,10 @@ public class Tests extends TestBase {
     void nameApi(){
         StepsApi authResponse = new StepsApi();
         authResponse.login();
+
+        mainPage.openPage();
+        step("Check that profile avatar is displayed", () ->
+                assertTrue(mainPage.isProfileAvatarDisplayed()));
     }
 
     @Test

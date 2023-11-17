@@ -62,22 +62,23 @@ public class StepsApi {
         cookies = response.cookies();
         headers = response.headers();
         session = cookies.get("nastolio_session");
-        System.out.println(session);
     }
 
     @Step("Логинимся")
     public StepsApi login() {
         gT();
         loginBodyModel.setToken(authToken);
-        authResponse = given(requestSpec)
+        String x = given(requestSpec)
                 .header("User-Agent","Chrome/119.0.0.0 Safari/537.36")
                 .header("Cookie", headers.get("Set-Cookie"))
                 .body(loginBodyModel.getAuthData())
                 .when()
-                .post("/Login")
+                .post("/login")
                 .then()
-                .spec(responseSpec.expect().statusCode(200))
-                .extract().as(LoginResponseModel.class);
+                .spec(responseSpec.expect().statusCode(302))
+                .extract().headers().toString();
+
+        System.out.println(x);
 
         //authResponse.setHeaderValue("Bearer " + authResponse.getToken());
         return this;

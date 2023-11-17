@@ -21,6 +21,7 @@ public class Specs {
     public static ResponseSpecification responseSpec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(HEADERS)
+            .log(COOKIES)
             //.log(BODY)
             .build();
 }
