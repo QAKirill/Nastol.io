@@ -84,7 +84,7 @@ remote_test
 <img title="Test Results in Alure" src="attach/Reports/ResultTest.png">
 </p>
 
-## <img src="attach/Logo/AllureTestOps.svg" title="Allure TestOps" width="4%"/> <a href="https://allure.autotests.cloud/launch/30934" target="_blank">Интеграция с Allure TestOps</a>
+## <img name="TestOps" src="attach/Logo/AllureTestOps.svg" title="Allure TestOps" width="4%"/> <a href="https://allure.autotests.cloud/launch/30934" target="_blank">Интеграция с Allure TestOps</a>
 
 Выполнена интеграция сборки <code>Jenkins</code> с <code>Allure TestOps</code>.
 Результат выполнения автотестов отображается в <code>Allure TestOps</code>
@@ -106,5 +106,5 @@ remote_test
 
 К каждому тесту в отчете прилагается видео прогона.  
 <p align="center">
-<img title="Selenoid Video" src="attach/Reports/video.gif" width="550" height="350"  alt="video">   
+<img name="video" title="Selenoid Video" src="attach/Reports/video.gif" width="550" height="350"  alt="video">   
 </p>
