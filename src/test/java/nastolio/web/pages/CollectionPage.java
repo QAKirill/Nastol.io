@@ -1,5 +1,6 @@
 package nastolio.web.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -41,6 +42,12 @@ public class CollectionPage {
     }
 
     public boolean gameInCollection(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return gameInCollection.exists();
     }
 }

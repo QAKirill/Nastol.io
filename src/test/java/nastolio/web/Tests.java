@@ -58,9 +58,8 @@ public class Tests extends TestBase {
                     .addGame();
         });
 
-        step("Check that the game is added to collection", () -> {
-            assertTrue(collectionPage.gameInCollection());
-        });
+        step("Check that the game is added to collection", () ->
+            assertTrue(collectionPage.gameInCollection()));
     }
 
     @Test
