@@ -1,12 +1,11 @@
 package nastolio.web.pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import nastolio.web.utils.ConfigReader;
+import nastolio.web.utils.LoginConfig;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -34,11 +33,10 @@ public class MainPage {
     @Step("Do login")
     public MainPage login() {
         LoginPage loginPage = new LoginPage();
+        LoginConfig config = ConfigReader.INSTANCE.getCredentials();
 
         openLogin();
-        loginPage.setEmail("ghostman92@rambler.ru")
-                .setPassword("12345678")
-                .doLogin();
+        loginPage.doLogin(config.email(), config.password());
 
         return this;
     }

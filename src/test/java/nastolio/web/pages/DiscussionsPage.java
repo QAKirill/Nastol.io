@@ -1,9 +1,7 @@
 package nastolio.web.pages;
 
-import com.codeborne.selenide.*;
-import org.openqa.selenium.Alert;
-
-import java.util.Set;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;

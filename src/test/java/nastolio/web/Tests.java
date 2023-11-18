@@ -23,7 +23,7 @@ public class Tests extends TestBase {
 
     @Test
     @DisplayName("Find and open game card")
-    void openGameCard() {
+    void openGameCardTest() {
         mainPage.openPage();
 
         step("Search game", () ->
@@ -45,7 +45,7 @@ public class Tests extends TestBase {
 
     @Test
     @DisplayName("Successfully adding the game to user collection")
-    void successfulAddGameToCollection() {
+    void successfulAddGameToCollectionTest() {
         mainPage.openPage()
                 .login()
                 .openGamesCollection();
@@ -79,7 +79,7 @@ public class Tests extends TestBase {
 
     @Test
     @DisplayName("Successfully deleting game from collection")
-    void successfulDeleteGameFromCollection() {
+    void successfulDeleteGameFromCollectionTest() {
         mainPage.openPage()
                 .login()
                 .openGamesCollection();
@@ -108,7 +108,7 @@ public class Tests extends TestBase {
 
     @Test
     @DisplayName("Successful find offers on market")
-    void findGameOffersOnMarket() {
+    void findGameOffersOnMarketTest() {
         mainPage.openPage()
                 .openMarketOffers();
 
@@ -126,7 +126,8 @@ public class Tests extends TestBase {
     }
 
     @Test
-    void name() {
+    @DisplayName("Left comment on discussion")
+    void successfulLeftCommentTest() {
         String comment = "Вы абсолютно правы!";
         mainPage.openPage()
                 .login()
