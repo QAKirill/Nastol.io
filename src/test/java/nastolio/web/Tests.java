@@ -6,7 +6,10 @@ import nastolio.web.pages.MainPage;
 import nastolio.web.pages.SearchPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Cookie;
 
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -46,11 +49,20 @@ public class Tests extends TestBase {
     }
 
     @Test
-    void nameApi(){
+    void nameApi() throws InterruptedException {
         StepsApi authResponse = new StepsApi();
-        authResponse.login();
+        //authResponse.login();
+        authResponse.getTo();
+        String token = authResponse.getNtoken(),
+                session = authResponse.getSession();
+
+        open("/images/logo_short.svg?version=2");
+        getWebDriver().manage().addCookie(new Cookie("nastolio_session", session));
+        getWebDriver().manage().addCookie(new Cookie("tokenolio._token.local", token));
 
         mainPage.openPage();
+
+        Thread.sleep(5000);
         step("Check that profile avatar is displayed", () ->
                 assertTrue(mainPage.isProfileAvatarDisplayed()));
     }
