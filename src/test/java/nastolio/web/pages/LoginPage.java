@@ -10,7 +10,7 @@ public class LoginPage {
             password = $("#password"),
             loginButton = $(byText("Войти"));
 
-    public LoginPage doLogin(String email, String password){
+    public LoginPage loginAsUser(String email, String password){
         this.email.sendKeys(email);
         this.password.sendKeys(password);
         loginButton.click();

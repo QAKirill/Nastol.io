@@ -1,4 +1,4 @@
-package nastolio.web.utils;
+package nastolio.web.configs;
 
 import org.aeonbits.owner.Config;
 

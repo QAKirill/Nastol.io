@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class MarketOffersPage {
     private SelenideElement
@@ -11,7 +12,7 @@ public class MarketOffersPage {
             cityInput = $(".market-filters").$("[aria-controls=vs2__listbox]"),
             submitButton = $(".market-filters").$("[type=submit]");
 
-    private ElementsCollection offersList = $(".market-offers-list").$$("div");
+    private ElementsCollection offersList = $$(".market-offer-item");
 
     public MarketOffersPage setName(String value){
         gameNameInput.sendKeys(value);

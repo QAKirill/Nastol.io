@@ -2,8 +2,8 @@ package nastolio.web.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import nastolio.web.utils.ConfigReader;
-import nastolio.web.utils.LoginConfig;
+import nastolio.web.configs.ConfigReader;
+import nastolio.web.configs.LoginConfig;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -15,8 +15,7 @@ public class MainPage {
             searchInput = $("#app").$("form[method=get").$("input[name=query]"),
             games = $(".menu").$("a[href=https\\:\\/\\/nastol\\.io\\/\\@testHedgehog\\/games]"),
             menuPremium = $(".menu-premium"),
-            buyGames = $(".menu").$(byText("Купить игру")),
-            discussions = $(".menu").$(byText("Обсуждения"));
+            menu = $(".menu");
 
 
     @Step("Open main page")
@@ -36,12 +35,13 @@ public class MainPage {
         LoginConfig config = ConfigReader.INSTANCE.getCredentials();
 
         openLogin();
-        loginPage.doLogin(config.email(), config.password());
+        loginPage.loginAsUser(config.email(), config.password());
 
         return this;
     }
 
-    public MainPage doSearch(String value){
+    @Step("Search game")
+    public MainPage searchGame(String value){
         searchInput.sendKeys(value);
         searchInput.pressEnter();
         return this;
@@ -59,15 +59,9 @@ public class MainPage {
         return this;
     }
 
-    @Step("Open market offers page")
-    public MainPage openMarketOffers(){
-        buyGames.click();
-        return this;
-    }
-
-    @Step("Open discussions page")
-    public MainPage openDiscussions(){
-        discussions.click();
+    @Step("Open {value} page")
+    public MainPage sideMenuClick(String value){
+        menu.$(byText(value)).click();
         return this;
     }
 
