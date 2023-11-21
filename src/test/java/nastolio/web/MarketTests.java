@@ -1,5 +1,6 @@
 package nastolio.web;
 
+import io.qameta.allure.Epic;
 import nastolio.web.pages.MainPage;
 import nastolio.web.pages.MarketOffersPage;
 import org.junit.jupiter.api.DisplayName;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+@Epic("Market")
 public class MarketTests extends TestBase {
 
     MainPage mainPage = new MainPage();

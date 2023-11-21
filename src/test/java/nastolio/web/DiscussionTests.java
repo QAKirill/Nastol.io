@@ -1,6 +1,7 @@
 package nastolio.web;
 
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Epic;
 import nastolio.web.pages.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Epic("Discussions")
 public class DiscussionTests extends TestBase {
 
     MainPage mainPage = new MainPage();

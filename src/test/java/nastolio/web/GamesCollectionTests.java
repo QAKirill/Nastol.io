@@ -1,5 +1,6 @@
 package nastolio.web;
 
+import io.qameta.allure.Epic;
 import nastolio.web.pages.CollectionPage;
 import nastolio.web.pages.GamePage;
 import nastolio.web.pages.MainPage;
@@ -10,7 +11,8 @@ import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GameCollectionTests extends TestBase {
+@Epic("Games collections")
+public class GamesCollectionTests extends TestBase {
     MainPage mainPage = new MainPage();
 
     @Test
