@@ -13,14 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class MarketTests extends TestBase {
 
     MainPage mainPage = new MainPage();
+    MarketOffersPage offers = new MarketOffersPage();
 
     @Test
     @DisplayName("Successful find offers on market")
     void findGameOffersOnMarketTest() {
         mainPage.openPage()
                 .sideMenuClick("Купить игру");
-
-        MarketOffersPage offers = new MarketOffersPage();
 
         step("Find game offers", () -> {
             offers.setName("Манчкин")

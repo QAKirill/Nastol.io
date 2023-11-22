@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DiscussionTests extends TestBase {
 
     MainPage mainPage = new MainPage();
+    DiscussionsPage discussionsPage = new DiscussionsPage();
 
     @Test
     @DisplayName("Left comment on discussion")
@@ -21,8 +22,6 @@ public class DiscussionTests extends TestBase {
         mainPage.openPage()
                 .login()
                 .sideMenuClick("Обсуждения");
-
-        DiscussionsPage discussionsPage = new DiscussionsPage();
 
         step("Left comment", () ->
         discussionsPage

@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Epic("Games collections")
 public class GamesCollectionTests extends TestBase {
     MainPage mainPage = new MainPage();
+    CollectionPage collectionPage = new CollectionPage();
+    GamePage gamePage = new GamePage();
 
     @Test
     @DisplayName("Successfully adding the game to user collection")
@@ -21,8 +23,6 @@ public class GamesCollectionTests extends TestBase {
         mainPage.openPage()
                 .login()
                 .openGamesCollection();
-
-        CollectionPage collectionPage = new CollectionPage();
 
         step("Add game to collection", () -> {
             collectionPage.addGameButtonClick()
@@ -41,8 +41,6 @@ public class GamesCollectionTests extends TestBase {
                 .login()
                 .openGamesCollection();
 
-        CollectionPage collectionPage = new CollectionPage();
-
         step("Add game to collection", () -> {
             collectionPage.addGameButtonClick()
                     .searchGame("Покорение марса ")
@@ -51,10 +49,7 @@ public class GamesCollectionTests extends TestBase {
 
         step("Delete game from collection", () -> {
             collectionPage.openGameCardFromCollection();
-
-            GamePage gamePage = new GamePage();
             gamePage.removeGame();
-
             mainPage.openGamesCollection();
         });
 

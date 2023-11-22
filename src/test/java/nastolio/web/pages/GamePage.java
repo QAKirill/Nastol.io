@@ -7,8 +7,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class GamePage {
     private SelenideElement
-            name = $(".content-container").$(".games-one-info__name-block").$("h1").shouldHave(text("Покорение Марса (2016)")),
-            englishName = $(".content-container").$(".games-one-info__name-block").$("div").shouldHave(text("Terraforming Mars")),
+            name = $(".content-container").$(".games-one-info__name-block").$("h1"),
+            englishName = $(".content-container").$(".games-one-info__name-block").$("div"),
             gameImage = $(".content-container").$(".games-one-info").$(".games-main-image__img"),
             removeGame =$(".games-one-actions").$("#__BVID__55__BV_button_");
 
@@ -18,12 +18,12 @@ public class GamePage {
         return this;
     }
 
-    public boolean nameDisplayed(){
-        return name.exists();
+    public boolean nameDisplayed(String value){
+        return name.shouldHave(text(value)).exists();
     }
 
-    public boolean englishNameDisplayed(){
-        return englishName.exists();
+    public boolean englishNameDisplayed(String value){
+        return englishName.shouldHave(text(value)).exists();
     }
 
     public boolean gameImageDisplayed(){

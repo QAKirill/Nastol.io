@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GameCardTests extends TestBase{
 
     MainPage mainPage = new MainPage();
+    GamePage gamePage = new GamePage();
 
     @Test
     @DisplayName("Find and open game card")
@@ -24,11 +25,9 @@ public class GameCardTests extends TestBase{
         SearchPage searchPage = new SearchPage();
         searchPage.firstHexagonClick();
 
-        GamePage gamePage = new GamePage();
-
         step("Verify game displayed attributes", () -> {
-            assertTrue(gamePage.nameDisplayed());
-            assertTrue(gamePage.englishNameDisplayed());
+            assertTrue(gamePage.nameDisplayed("Покорение Марса (2016)"));
+            assertTrue(gamePage.englishNameDisplayed("Terraforming Mars"));
             assertTrue(gamePage.gameImageDisplayed());
         });
     }

@@ -13,14 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PremiumPageTests extends TestBase {
 
     MainPage mainPage = new MainPage();
+    PremiumPage premiumPage = new PremiumPage();
 
     @Test
     @DisplayName("Check elements on Premium page")
     void premiumPageTest() {
         mainPage.openPage()
                 .premiumClick();
-
-        PremiumPage premiumPage = new PremiumPage();
 
         step("Check elements on page", () -> {
             assertTrue(premiumPage.checkHeader());
