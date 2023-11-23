@@ -8,10 +8,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Epic("Game card")
-public class GameCardTests extends TestBase{
+public class GameCardTests extends TestBase {
 
     MainPage mainPage = new MainPage();
     GamePage gamePage = new GamePage();
@@ -25,10 +26,10 @@ public class GameCardTests extends TestBase{
         SearchPage searchPage = new SearchPage();
         searchPage.firstHexagonClick();
 
-        step("Verify game displayed attributes", () -> {
-            assertTrue(gamePage.nameDisplayed("Покорение Марса (2016)"));
-            assertTrue(gamePage.englishNameDisplayed("Terraforming Mars"));
-            assertTrue(gamePage.gameImageDisplayed());
-        });
+        step("Verify game displayed attributes", () ->
+                assertAll(
+                        () -> assertTrue(gamePage.nameDisplayed("Покорение Марса (2016)")),
+                        () -> assertTrue(gamePage.englishNameDisplayed("Terraforming Mars")),
+                        () -> assertTrue(gamePage.gameImageDisplayed())));
     }
 }

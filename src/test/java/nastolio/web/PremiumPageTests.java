@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Epic("Premium page")
@@ -21,9 +22,9 @@ public class PremiumPageTests extends TestBase {
         mainPage.openPage()
                 .premiumClick();
 
-        step("Check elements on page", () -> {
-            assertTrue(premiumPage.checkHeader());
-            assertTrue(premiumPage.checkSubscribeButton());
-        });
+        step("Check elements on page", () ->
+                assertAll(
+                        () -> assertTrue(premiumPage.checkHeader()),
+                        () -> assertTrue(premiumPage.checkSubscribeButton())));
     }
 }
