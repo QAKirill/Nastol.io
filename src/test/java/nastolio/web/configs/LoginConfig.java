@@ -6,7 +6,7 @@ import org.aeonbits.owner.Config;
 
 public interface LoginConfig extends Config{
     @Config.Key("login")
-    @Config.DefaultValue("ghostman92@rambler.ru")
+    @Config.DefaultValue("")
     String email();
 
     @Config.Key("password")
