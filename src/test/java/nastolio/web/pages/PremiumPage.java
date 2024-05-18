@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class PremiumPage {
     private SelenideElement header = $(byText("Поддерживай развитие сайта и получай приятные бонусы")),
-            subscribe = $$("button").findBy(text("Подключить за 199 рублей"));
+            subscribe = $$("button").findBy(text("Подключить за 299 рублей"));
 
     public boolean checkHeader(){
         return header.isDisplayed();

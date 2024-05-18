@@ -3,6 +3,7 @@ package nastolio.web;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,6 +17,8 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\chromedriver\\chromedriver.exe");
+
         Configuration.baseUrl = "https://nastol.io";
         Configuration.pageLoadStrategy = "eager";
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
